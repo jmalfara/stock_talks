@@ -11,6 +11,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:stock_talks/screen/feed/feedScreen.dart';
+import 'package:stock_talks/screen/upload/uploadScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,13 +40,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    FeedScreen(
-
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    FeedScreen(),
+    UploadScreen(),
     Text(
       'Index 2: School',
       style: optionStyle,
