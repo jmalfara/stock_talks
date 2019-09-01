@@ -6,8 +6,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:stock_talks/screen/models/post.dart';
-import 'package:stock_talks/screen/feed/feedItemTile.dart';
+import 'package:stock_talks/network/models/post.dart';
+import 'package:stock_talks/components/feedItemTile.dart';
 import 'package:stock_talks/screen/post/postScreen.dart';
 
 class FeedScreen extends StatefulWidget {

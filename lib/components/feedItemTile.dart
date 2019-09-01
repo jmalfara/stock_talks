@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stock_talks/screen/components/circleImage.dart';
-import 'package:stock_talks/screen/models/post.dart';
+import 'package:stock_talks/components/circleImage.dart';
+import 'package:stock_talks/network/models/post.dart';
 
 class FeedItemTile extends StatelessWidget {
   final Post item;

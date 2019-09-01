@@ -4,10 +4,10 @@
  * */
 
 import 'package:flutter/material.dart';
-import 'package:stock_talks/screen/components/commentCard.dart';
-import 'package:stock_talks/screen/feed/feedItemTile.dart';
-import 'package:stock_talks/screen/models/comment.dart';
-import 'package:stock_talks/screen/models/post.dart';
+import 'package:stock_talks/components/commentCard.dart';
+import 'package:stock_talks/components/feedItemTile.dart';
+import 'package:stock_talks/network/models/comment.dart';
+import 'package:stock_talks/network/models/post.dart';
 
 class PostScreen extends StatefulWidget {
   final Post postItem;

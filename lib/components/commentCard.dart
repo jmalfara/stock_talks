@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stock_talks/screen/models/comment.dart';
+import 'package:stock_talks/network/models/comment.dart';
 
 class CommentCard extends StatelessWidget {
   final Comment comment;
