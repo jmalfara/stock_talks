@@ -12,6 +12,7 @@
 import 'package:flutter/material.dart';
 import 'package:stock_talks/screen/feed/feedScreen.dart';
 import 'package:stock_talks/screen/upload/uploadScreen.dart';
+import 'package:stock_talks/screen/watchlistScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,10 +43,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     FeedScreen(),
     UploadScreen(),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    WatchlistScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -71,7 +69,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             title: Text('Post'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
+            icon: Icon(Icons.thumb_up),
             title: Text('Profile'),
           ),
         ],
