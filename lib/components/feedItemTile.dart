@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:stock_talks/components/circleImage.dart';
+import 'package:stock_talks/network/models/forum.dart';
 import 'package:stock_talks/network/models/post.dart';
 
 class FeedItemTile extends StatelessWidget {
+  final Forum forum;
   final Post item;
   final Function onUpVote;
   final Function onDownVote;
@@ -12,12 +14,13 @@ class FeedItemTile extends StatelessWidget {
   final bool fullDescription;
 
   const FeedItemTile({Key key,
+    this.forum,
     this.item,
     this.onUpVote,
     this.onDownVote,
     this.onShare,
     this.onPressed,
-    this.fullDescription = false
+    this.fullDescription = false,
   }) : super(key: key);
 
   @override
@@ -32,9 +35,9 @@ class FeedItemTile extends StatelessWidget {
                 // Group Icon and Forum Title
                 Row(
                   children: <Widget>[
-                    CircleImage(size: 30, imageUrl: item.forumImage),
+                    CircleImage(size: 30, imageUrl: forum.image),
                     Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
-                    Text(item.forumName)
+                    Text(forum.id)
                   ],
                 ),
                 // Post Title
@@ -43,7 +46,7 @@ class FeedItemTile extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: Text(
-                          item.postTitle,
+                          item.title,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20
@@ -59,7 +62,7 @@ class FeedItemTile extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           child: Text(
-                            item.postDescription,
+                            item.description,
                             maxLines: fullDescription ? null : 4,
                             overflow: TextOverflow.fade,
                             style: TextStyle(
@@ -80,7 +83,7 @@ class FeedItemTile extends StatelessWidget {
                           icon: Icon(Icons.arrow_upward),
                           onPressed: () => onUpVote(item),
                         ),
-                        Text("${item.numberOfVotes}"),
+                        Text("${item.numberOfUpVotes}"),
                         IconButton(
                           icon: Icon(Icons.arrow_downward),
                           onPressed: () => onDownVote(item),

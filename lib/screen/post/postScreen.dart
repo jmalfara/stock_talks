@@ -7,26 +7,29 @@ import 'package:flutter/material.dart';
 import 'package:stock_talks/components/commentCard.dart';
 import 'package:stock_talks/components/feedItemTile.dart';
 import 'package:stock_talks/network/models/comment.dart';
+import 'package:stock_talks/network/models/forum.dart';
 import 'package:stock_talks/network/models/post.dart';
 
 class PostScreen extends StatefulWidget {
   final Post postItem;
+  final Forum forum;
 
-  const PostScreen({Key key, this.postItem}) : super(key: key);
+  const PostScreen({Key key, this.postItem, this.forum}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _PostScreenState(postItem: postItem);
+    return _PostScreenState(postItem: postItem, forum: forum);
   }
 }
 
 class _PostScreenState extends State<PostScreen> {
   final Post postItem;
+  final Forum forum;
   List<Object> items;
 
   final replyTextEditingController = TextEditingController();
 
-  _PostScreenState({this.postItem}) {
+  _PostScreenState({this.postItem, this.forum}) {
     items = List();
     items.add(postItem);
 
@@ -60,6 +63,7 @@ class _PostScreenState extends State<PostScreen> {
             // Header.
             return FeedItemTile(
               item: postItem,
+              forum: forum,
               fullDescription: true,
               onPressed: () => {/*No-Op*/},
               onDownVote: downVotePost,
@@ -110,17 +114,17 @@ class _PostScreenState extends State<PostScreen> {
 
   void upVotePost(Post post) {
     // TODO
-    print("UpVote"+post.postId);
+    print("UpVote"+post.id);
   }
 
   void downVotePost(Post post) {
     // TODO
-    print("DownVote"+post.postId);
+    print("DownVote"+post.id);
   }
 
   void sharePost(Post post) {
     // TODO
-    print("Share: "+post.postId);
+    print("Share: "+post.id);
   }
 
   // Comments

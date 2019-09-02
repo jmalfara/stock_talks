@@ -1,20 +1,15 @@
 class Post {
-  final String forumImage;
-  final String forumName;
-
-  final String postId;
-  final String postTitle;
-  final String postDescription;
-  final int numberOfVotes;
+  final String id;
+  final String title;
+  final String description;
+  final int numberOfUpVotes;
   final int numberOfComments;
 
   const Post({
-    this.forumImage,
-    this.forumName,
-    this.postId,
-    this.postTitle,
-    this.postDescription,
-    this.numberOfVotes,
+    this.id,
+    this.title,
+    this.description,
+    this.numberOfUpVotes,
     this.numberOfComments
   });
 }

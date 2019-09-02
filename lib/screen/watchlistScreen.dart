@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stock_talks/components/symbolLookupRow.dart';
-import 'package:stock_talks/network/models/symbol.dart';
+import 'package:stock_talks/network/models/forum.dart';
 
 class WatchlistScreen extends StatefulWidget {
 
@@ -20,26 +20,18 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   List filteredNames = new List(); // names filtered by search text
   Icon _searchIcon = new Icon(Icons.search);
 
-  // TODO Hookup API
-  List<Symbol> symbols = List<Symbol>.generate(
-      1200,
-          (i) => Symbol(
-          id: "TSX$i",
-          company: "Toronto Ex: $i"
-      )
-  );
-
-  List<Symbol> filteredList;
+  List<Forum> availableForums = List();
+  List<Forum> filteredList;
 
   @override
   void initState() {
     super.initState();
-    filteredList = symbols;
+    fetchAvailableForums();
+    filteredList = availableForums;
   }
 
   @override
   Widget build(BuildContext context) {
-        
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.grey[500],
@@ -61,11 +53,14 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
           ),
           leading: _searchIcon
       ),
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.black,
+        ),
         itemCount: filteredList.length,
         itemBuilder: (context, index) {
           return SymbolLookupRow(
-            symbol: filteredList[index]
+            forum: filteredList[index]
           );
         },
       )
@@ -79,7 +74,25 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
 
   void updateFilter(String s) {
     setState(() {
-      filteredList = symbols.where((i) => i.id.contains(s)).toList();
+      filteredList = availableForums.where((i) => i.name.toLowerCase().contains(s.toLowerCase()) || i.description.toLowerCase().contains(s.toLowerCase())).toList();
+    });
+  }
+
+  void fetchAvailableForums() {
+    // TODO Hookup API
+    var _availableForums = List<Forum>.generate(120, (i) => Forum(
+      id: "$i",
+      name: "TSX$i",
+      description: "Toronto Stock Exchange $i",
+      image: "https://picsum.photos/id/$i/50/50/",
+      latestPosts: null,
+      numberOfPosts: i,
+      numberOfFollowers: i*3,
+      following: i == 2
+    ));
+
+    setState(() {
+      availableForums = _availableForums;
     });
   }
 }
